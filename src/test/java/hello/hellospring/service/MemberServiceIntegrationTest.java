@@ -24,7 +24,7 @@ class MemberServiceIntegrationTest {
         Member findMember = memberRepository.findById(saveId).get();
         assertEquals(member.getName(), findMember.getName());
     }
-    @Test
+    @Test //
     public void 중복_회원_예외() throws Exception {
         //Given
         Member member1 = new Member();

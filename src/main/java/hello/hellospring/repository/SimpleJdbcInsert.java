@@ -5,5 +5,7 @@ public class SimpleJdbcInsert {
     }
 
     public Number executeAndReturnKey(MapSqlParameterSource mapSqlParameterSource) {
+        // 설정
+
     }
 }

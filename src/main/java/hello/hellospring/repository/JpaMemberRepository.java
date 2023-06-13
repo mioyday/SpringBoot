@@ -11,7 +11,7 @@ public class JpaMemberRepository implements MemberRepository{
     private final EntityManager em;
 
     public JpaMemberRepository(EntityManager em) {
-        this.em = em;
+        this.em = em; //
     }
 
     @Override
@@ -38,7 +38,17 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
-    public void clearStore() {
-
+    public Optional<Member> findByName(String name) {
+        List<Member> result = jdbcTemplate.query("select * from member where
+                name = ?", memberRowMapper(), name);
+        return result.stream().findAny();
+    }
+    private RowMapper<Member> memberRowMapper() {
+        return (rs, rowNum) -> {
+            Member member = new Member();
+            member.setId(rs.getLong("id"));
+            member.setName(rs.getString("name"));
+            return member;
+        };
     }
 }

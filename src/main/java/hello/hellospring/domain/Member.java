@@ -1,5 +1,6 @@
 package hello.hellospring.domain;
 
+
 import jakarta.persistence.*;
 
 @Entity

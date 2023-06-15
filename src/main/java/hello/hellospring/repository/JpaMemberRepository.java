@@ -6,7 +6,7 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaMemberRepository implements MemberRepository{
+public class JpaMemberRepository implements MemberRepository {
 
     private final EntityManager em;
 
@@ -28,6 +28,7 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public Optional<Member> findByName(String name) {
+
         return em.createNamedQuery();
     }
 
@@ -38,9 +39,13 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
+    public void clearStore() {
+
+    }
+
+    @Override
     public Optional<Member> findByName(String name) {
-        List<Member> result = jdbcTemplate.query("select * from member where
-                name = ?", memberRowMapper(), name);
+        List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(), name);
         return result.stream().findAny();
     }
     private RowMapper<Member> memberRowMapper() {
